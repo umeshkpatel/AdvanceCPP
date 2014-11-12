@@ -7,5 +7,5 @@
 
 #define UASSET(Condition) \
     if (!(Condition)) { abort(); }
-
+#define UEMPTY_SIZE   (-1)
 #endif // _UDEFINES_H_

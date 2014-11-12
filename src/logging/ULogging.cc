@@ -25,7 +25,7 @@ const char* log_severity_name(int severity)
   return "VERBOSE";
 }
 
-int min_log_level = -1;
+int kMinLogLevel = -1;
 
 LoggingDestination logging_destination = LOG_TO_ALL;
 
@@ -76,7 +76,7 @@ void CloseLogFileUnlocked() {
 }  // namespace
 
 void SetMinLogLevel(int level) {
-  min_log_level = std::min(LOG_FATAL, level);
+  kMinLogLevel = std::min(LOG_FATAL, level);
 }
 
 int GetMinLogLevel() {
@@ -109,7 +109,8 @@ LogMessage::~LogMessage() {
   stream_ << std::endl;
   std::string str_newline(stream_.str());
 
-  if ((logging_destination & LOG_TO_SYSTEM_DEBUG_LOG) != 0) {
+  if (((logging_destination & LOG_TO_SYSTEM_DEBUG_LOG) != 0) &&
+         (severity_ >= kMinLogLevel)) {
     fwrite(str_newline.data(), str_newline.size(), 1, stderr);
     fflush(stderr);
   } else if (severity_ >= kAlwaysPrintErrorLevel) {
@@ -151,7 +152,7 @@ void CloseLogFile() {
 }
 
 void RawLog(int level, const char* message) {
-  if (level >= min_log_level) {
+  if (level >= kMinLogLevel) {
     size_t bytes_written = 0;
     const size_t message_len = strlen(message);
     int rv;
