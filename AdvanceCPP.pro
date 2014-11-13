@@ -1,11 +1,12 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2014-10-20T08:34:48
+# Project created by Umesh Kumar Patel 2014-10-20
+#
+# [github] = https://github.com/umeshkpatel
 #
 #-------------------------------------------------
 
 QT       += core
-
 QT       -= gui
 
 TARGET = AdvanceCPP
@@ -14,17 +15,16 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
-
 SOURCES += \
-    src/logging/ULogging.cc \
-    main.cpp
+    main.cpp \
+    src/logging/ULogging.cc
 
 HEADERS += \
+    include/UBasics.h \
     include/UDefines.h \
     include/ULogging.h \
     include/utl/USmartPtr.h \
-    include/utl/UStack.h \
-    include/UBasics.h
+    include/utl/UStack.h
 
 INCLUDEPATH += \
     include/
