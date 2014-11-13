@@ -23,7 +23,8 @@ HEADERS += \
     include/UDefines.h \
     include/ULogging.h \
     include/utl/USmartPtr.h \
-    include/utl/UStack.h
+    include/utl/UStack.h \
+    include/UBasics.h
 
 INCLUDEPATH += \
     include/

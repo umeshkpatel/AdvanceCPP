@@ -6,6 +6,7 @@
 
 #include <ULogging.h>
 #include <UDefines.h>
+#include <UBasics.h>
 
 namespace utl {
 
@@ -164,10 +165,13 @@ class Stack {
    */
   void Swap(Stack& in_obj) {
     LOG(INFO)<<__PRETTY_FUNCTION__;
-    Stack t_obj;
-    t_obj.ShallowCopy(in_obj);
-    in_obj.ShallowCopy(*this);
-    this->ShallowCopy(t_obj);
+    utl::Swap<size_t>(m_size, in_obj.m_size);
+    utl::Swap<size_t>(m_top, in_obj.m_top);
+    utl::Swap<size_t>(m_reserve, in_obj.m_reserve);
+    utl::Swap<T>(m_data, in_obj.m_data);
+    //T * t_data = m_data;
+    //m_data = in_obj.m_data;
+    //in_obj.m_data = t_data;
   }
 };
 
